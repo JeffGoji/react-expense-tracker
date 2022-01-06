@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import './ExpenseForm.css';
 
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
 
     //useState varaiables:
     //Multi State method:
@@ -34,6 +34,7 @@ const ExpenseForm = () => {
     //Submit Handler:
     const submitHandler = (event) => {
         event.preventDefault();
+
         //Expense data object:
         const expenseData = {
             title: enteredTitle,
@@ -42,12 +43,15 @@ const ExpenseForm = () => {
         }
 
         console.log(expenseData);
+        //Save the expense:
+        props.onSaveExpenseData();
         //Resets to empty strings after data is submitted:
         setEnteredTitle('');
         setEnteredAmount('');
         setEnteredDate('')
     };
 
+    //Forms:
     return <form onSubmit={submitHandler}>
         <div className="new-expense__controls">
             <div className="new-expense__control">
